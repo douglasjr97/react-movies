@@ -4,6 +4,7 @@ import { ApiMovie, Movie } from "../interfaces/interface";
 import { api } from "../services/api";
 import Filmes from "../Filmes";
 import convertApiMovieToMovie from "../utils/convertApiMovieToMovie";
+import { Container, Title } from "./styles";
 
 const Dashboard = () => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
@@ -21,23 +22,27 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>helo</Text>
-      <View>
-        <FlatList
-          data={filmes}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <Filmes data={item} />}
-        />
-      </View>
-    </SafeAreaView>
+    <Container>
+      <SafeAreaView>
+        <Title>
+          <Text style={{ fontSize: 25 }}>Populares🔥</Text>
+        </Title>
+        <View>
+          <FlatList
+            data={filmes}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => <Filmes data={item} />}
+          />
+        </View>
+      </SafeAreaView>
+    </Container>
   );
 };
 
 export default Dashboard;
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     alignItems: "center",
+//   },
+// });
