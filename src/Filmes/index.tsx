@@ -6,6 +6,7 @@ import {
   Container,
   DateTitle,
   RatingTitle,
+  SubTitleContainer,
   Title,
   TitleContainer,
 } from "../Filmes/styles";
@@ -21,26 +22,17 @@ const Filmes = ({ data }: FilmesProps) => {
     <SafeAreaView>
       <View>
         <Container>
-          <TitleContainer>
-            <Title>
-              <Text style={{ color: "white", fontSize: 26 }}>{data.title}</Text>
-            </Title>
-            <DateTitle>
-              <Text style={{ color: "white", fontSize: 26 }}>
-                {data.releaseDate}
-              </Text>
-            </DateTitle>
-            <RatingTitle>
-              <Text style={{ color: "white", fontSize: 18 }}>
-                {data.voteAverage}
-              </Text>
-            </RatingTitle>
-          </TitleContainer>
-
           <Image
-            style={{ height: 250, width: 400 }}
+            style={{ height: 250, width: 410 }}
             source={{ uri: `${ImageBaseUrl}${data.imageUrl}` }}
           />
+          <TitleContainer>
+            <Title>{data.title}</Title>
+            <SubTitleContainer>
+              <DateTitle>{data.releaseDate}</DateTitle>
+              <RatingTitle>{data.voteAverage}</RatingTitle>
+            </SubTitleContainer>
+          </TitleContainer>
         </Container>
       </View>
     </SafeAreaView>

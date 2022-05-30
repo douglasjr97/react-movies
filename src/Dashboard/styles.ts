@@ -1,15 +1,12 @@
+import { SafeAreaView } from "react-native";
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-  background-color: yellow;
-  align-items: center;
-  text-align: center;
-  border: 3px solid red;
+export const Container = styled.SafeAreaView`
+  background-color: black;
 `;
 
-export const Title = styled.View`
-  align-items: flex-start;
-  border: 1px solid red;
-  color: #fff;
-  font-size: 100px;
+export const Title = styled.Text`
+  padding-left: 35%;
+  font-size: 26px;
+  color: yellow;
 `;

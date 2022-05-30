@@ -23,18 +23,14 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <SafeAreaView>
-        <Title>
-          <Text style={{ fontSize: 25 }}>Populares🔥</Text>
-        </Title>
-        <View>
-          <FlatList
-            data={filmes}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <Filmes data={item} />}
-          />
-        </View>
-      </SafeAreaView>
+      <Title>Populares🔥</Title>
+      <View>
+        <FlatList
+          data={filmes}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => <Filmes data={item} />}
+        />
+      </View>
     </Container>
   );
 };
