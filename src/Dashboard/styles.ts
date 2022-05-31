@@ -10,3 +10,11 @@ export const Title = styled.Text`
   font-size: 26px;
   color: yellow;
 `;
+
+export const LayoutSearchBar = styled.TextInput`
+  border: 3px solid red;
+`;
+
+export const ContainerTop = styled.View`
+  flex-direction: column;
+`;

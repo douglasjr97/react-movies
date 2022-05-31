@@ -23,14 +23,14 @@ const Filmes = ({ data }: FilmesProps) => {
       <View>
         <Container>
           <Image
-            style={{ height: 250, width: 410 }}
+            style={{ height: 250, width: 410, borderRadius: 7 }}
             source={{ uri: `${ImageBaseUrl}${data.imageUrl}` }}
           />
           <TitleContainer>
             <Title>{data.title}</Title>
             <SubTitleContainer>
               <DateTitle>{data.releaseDate}</DateTitle>
-              <RatingTitle>{data.voteAverage}</RatingTitle>
+              <RatingTitle>{data.voteAverage}⭐️</RatingTitle>
             </SubTitleContainer>
           </TitleContainer>
         </Container>

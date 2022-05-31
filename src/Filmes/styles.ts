@@ -4,7 +4,7 @@ export const Container = styled.View`
   /* align-items: center; */
   /* text-align: center; */
   /* border: 3px solid green; */
-  margin-top: 25px;
+  margin-top: 30px;
   width: 100%;
   /* margin-top: 50px; */
 `;
