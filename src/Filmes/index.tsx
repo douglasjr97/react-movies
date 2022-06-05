@@ -17,7 +17,7 @@ interface FilmesProps {
 
 const Filmes = ({ data }: FilmesProps) => {
   const total = `${ImageBaseUrl}${data.imageUrl}`;
-  console.log(total);
+  // console.log(total);
   return (
     <SafeAreaView>
       <View>

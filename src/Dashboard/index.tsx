@@ -10,7 +10,11 @@ import { Searchbar } from "react-native-paper";
 const Dashboard = () => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const onChangeSearch = (query: any) => setSearchQuery(query);
+  const handleChange = (query: any) => setSearchQuery(query);
+
+  useEffect(() => {
+    console.log(searchQuery);
+  }, [searchQuery]);
 
   useEffect(() => {
     async function loadFilmes() {
@@ -31,7 +35,7 @@ const Dashboard = () => {
         {/* <LayoutSearchBar> */}
         <Searchbar
           placeholder="Search"
-          onChangeText={onChangeSearch}
+          onChangeText={handleChange}
           value={searchQuery}
           style={{ width: "90%", marginLeft: "3%" }}
         />
@@ -49,9 +53,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     alignItems: "center",
-//   },
-// });
