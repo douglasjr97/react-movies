@@ -1,4 +1,11 @@
-import { SafeAreaView, Text, StyleSheet, FlatList, View } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  FlatList,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { ApiMovie, Movie } from "../interfaces/interface";
 import { api } from "../services/api";
@@ -13,7 +20,7 @@ const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearchTermChange = (query: any) => setSearchTerm(query);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -47,28 +54,36 @@ const Dashboard = () => {
     loadFilmes();
   }, []);
 
-  return (
-    <Container>
-      <ContainerTop>
-        <Title>Populares🔥</Title>
-        {/* <LayoutSearchBar> */}
-        <Searchbar
-          placeholder="Search"
-          onChangeText={handleSearchTermChange}
-          value={searchTerm}
-          style={{ width: "90%", marginLeft: "3%" }}
-        />
-        {/* </LayoutSearchBar> */}
-      </ContainerTop>
-      <View>
-        <FlatList
-          data={filmes}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <Filmes data={item} />}
-        />
+  if (isLoading) {
+    return (
+      <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
+        <ActivityIndicator color="#2009ec" size={45} />
       </View>
-    </Container>
-  );
+    );
+  } else {
+    return (
+      <Container>
+        <ContainerTop>
+          <Title>Populares🔥</Title>
+          {/* <LayoutSearchBar> */}
+          <Searchbar
+            placeholder="Search"
+            onChangeText={handleSearchTermChange}
+            value={searchTerm}
+            style={{ width: "90%", marginLeft: "3%" }}
+          />
+          {/* </LayoutSearchBar> */}
+        </ContainerTop>
+        <View>
+          <FlatList
+            data={filmes}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => <Filmes data={item} />}
+          />
+        </View>
+      </Container>
+    );
+  }
 };
 
 export default Dashboard;
