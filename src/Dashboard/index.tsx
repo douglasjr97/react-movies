@@ -6,15 +6,34 @@ import Filmes from "../Filmes";
 import convertApiMovieToMovie from "../utils/convertApiMovieToMovie";
 import { Container, ContainerTop, LayoutSearchBar, Title } from "./styles";
 import { Searchbar } from "react-native-paper";
+import useDebounce from "../hooks/useDebounce";
 
 const Dashboard = () => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleChange = (query: any) => setSearchQuery(query);
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchTermChange = (query: any) => setSearchTerm(query);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(searchQuery);
-  }, [searchQuery]);
+    if (debouncedSearchTerm) {
+      async function loadFilms() {
+        setIsLoading(true);
+        const response = await api.get("/search/movie", {
+          params: {
+            query: debouncedSearchTerm,
+          },
+        });
+        const unformattedMovies: ApiMovie[] = response.data.results;
+        const formattedMovies: Movie[] = unformattedMovies.map((movie) =>
+          convertApiMovieToMovie(movie)
+        );
+        setFilmes(formattedMovies);
+        setIsLoading(false);
+      }
+      loadFilms();
+    }
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     async function loadFilmes() {
@@ -35,8 +54,8 @@ const Dashboard = () => {
         {/* <LayoutSearchBar> */}
         <Searchbar
           placeholder="Search"
-          onChangeText={handleChange}
-          value={searchQuery}
+          onChangeText={handleSearchTermChange}
+          value={searchTerm}
           style={{ width: "90%", marginLeft: "3%" }}
         />
         {/* </LayoutSearchBar> */}
