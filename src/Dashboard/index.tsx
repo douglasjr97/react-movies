@@ -5,6 +5,7 @@ import {
   FlatList,
   View,
   ActivityIndicator,
+  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ApiMovie, Movie } from "../interfaces/interface";
@@ -14,6 +15,8 @@ import convertApiMovieToMovie from "../utils/convertApiMovieToMovie";
 import { Container, ContainerTop, LayoutSearchBar, Title } from "./styles";
 import { Searchbar } from "react-native-paper";
 import useDebounce from "../hooks/useDebounce";
+import { useNavigation } from "@react-navigation/native";
+import Details from "../Pages/Details";
 
 const Dashboard = () => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
@@ -21,6 +24,12 @@ const Dashboard = () => {
   const handleSearchTermChange = (query: any) => setSearchTerm(query);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { navigation }: any = useNavigation();
+
+  function handleGoSearch() {
+    navigation.navigate(<Details />);
+  }
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -65,7 +74,7 @@ const Dashboard = () => {
       <Container>
         <ContainerTop>
           <Title>Populares🔥</Title>
-          {/* <LayoutSearchBar> */}
+          <Button title="Go to Details" onPress={handleGoSearch} />
           <Searchbar
             placeholder="Search"
             onChangeText={handleSearchTermChange}
