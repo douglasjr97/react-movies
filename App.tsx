@@ -1,13 +1,17 @@
 import { NavigationContainer } from "@react-navigation/native";
 import Dashboard from "./src/Dashboard";
 import Routes from "./src/Pages/routes";
+import { FilmesContextProvider } from "./src/contexts/FilmesContext/FilmesContext";
+("./src/contexts/FilmesContext/FilmesContext");
 
 export default function App() {
   return (
     <>
-      <NavigationContainer>
-        <Routes />
-      </NavigationContainer>
+      <FilmesContextProvider>
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      </FilmesContextProvider>
     </>
   );
 }

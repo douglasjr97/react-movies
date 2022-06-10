@@ -25,10 +25,10 @@ const Dashboard = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { navigation }: any = useNavigation();
+  const navigation = useNavigation();
 
   function handleGoSearch() {
-    navigation.navigate(<Details />);
+    navigation.navigate({ key: "Details" });
   }
 
   useEffect(() => {
