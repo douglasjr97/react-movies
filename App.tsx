@@ -6,11 +6,11 @@ import { FilmesContextProvider } from "./src/contexts/FilmesContext/FilmesContex
 export default function App() {
   return (
     <>
-      <FilmesContextProvider>
-        <NavigationContainer>
+      <NavigationContainer>
+        <FilmesContextProvider>
           <Routes />
-        </NavigationContainer>
-      </FilmesContextProvider>
+        </FilmesContextProvider>
+      </NavigationContainer>
     </>
   );
 }

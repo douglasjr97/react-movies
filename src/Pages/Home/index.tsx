@@ -9,17 +9,17 @@ import { Searchbar } from "react-native-paper";
 import useDebounce from "../../hooks/useDebounce";
 import { useNavigation } from "@react-navigation/native";
 
-const Home = () => {
+const Home = ({ navigation }: any) => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearchTermChange = (query: any) => setSearchTerm(query);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
-  function handleGoSearch() {
-    navigation.navigate({ key: "Details" });
+  function handleGoDetails() {
+    navigation.navigate("Details");
   }
 
   useEffect(() => {
@@ -65,14 +65,13 @@ const Home = () => {
       <Container>
         <ContainerTop>
           <Title>Populares🔥</Title>
-          <Button title="Go to Details" onPress={handleGoSearch} />
+          <Button title="Go to Details" onPress={handleGoDetails} />
           <Searchbar
             placeholder="Search"
             onChangeText={handleSearchTermChange}
             value={searchTerm}
             style={{ width: "90%", marginLeft: "3%" }}
           />
-          {/* </LayoutSearchBar> */}
         </ContainerTop>
         <View>
           <FlatList
