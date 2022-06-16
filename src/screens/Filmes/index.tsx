@@ -1,7 +1,7 @@
 import { View, SafeAreaView, Image } from "react-native";
 import React from "react";
-import { Movie } from "../interfaces/interface";
-import { imageUrl as ImageBaseUrl } from "../services/api";
+import { Movie } from "../../interfaces/interface";
+import { imageUrl as ImageBaseUrl } from "../../services/api";
 import {
   Container,
   DateTitle,
@@ -9,7 +9,7 @@ import {
   SubTitleContainer,
   Title,
   TitleContainer,
-} from "../Filmes/styles";
+} from "./styles";
 
 interface FilmesProps {
   data: Movie;

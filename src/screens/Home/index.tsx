@@ -2,7 +2,7 @@ import { FlatList, View, ActivityIndicator, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ApiMovie, Movie } from "../../interfaces/interface";
 import { api } from "../../services/api";
-import Filmes from "../../Filmes";
+import Filmes from "../Filmes";
 import convertApiMovieToMovie from "../../utils/convertApiMovieToMovie";
 import { Container, ContainerTop, Title } from "./styles";
 import { Searchbar } from "react-native-paper";
