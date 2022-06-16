@@ -1,24 +1,15 @@
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  FlatList,
-  View,
-  ActivityIndicator,
-  Button,
-} from "react-native";
+import { FlatList, View, ActivityIndicator, Button } from "react-native";
 import React, { useEffect, useState } from "react";
-import { ApiMovie, Movie } from "../interfaces/interface";
-import { api } from "../services/api";
-import Filmes from "../Filmes";
-import convertApiMovieToMovie from "../utils/convertApiMovieToMovie";
-import { Container, ContainerTop, LayoutSearchBar, Title } from "./styles";
+import { ApiMovie, Movie } from "../../interfaces/interface";
+import { api } from "../../services/api";
+import Filmes from "../../Filmes";
+import convertApiMovieToMovie from "../../utils/convertApiMovieToMovie";
+import { Container, ContainerTop, Title } from "./styles";
 import { Searchbar } from "react-native-paper";
-import useDebounce from "../hooks/useDebounce";
+import useDebounce from "../../hooks/useDebounce";
 import { useNavigation } from "@react-navigation/native";
-import Details from "../Pages/Details";
 
-const Dashboard = () => {
+const Home = () => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearchTermChange = (query: any) => setSearchTerm(query);
@@ -95,4 +86,4 @@ const Dashboard = () => {
   }
 };
 
-export default Dashboard;
+export default Home;

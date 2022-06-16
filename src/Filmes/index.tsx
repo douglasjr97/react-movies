@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
+import { View, SafeAreaView, Image } from "react-native";
 import React from "react";
 import { Movie } from "../interfaces/interface";
 import { imageUrl as ImageBaseUrl } from "../services/api";
@@ -17,7 +17,6 @@ interface FilmesProps {
 
 const Filmes = ({ data }: FilmesProps) => {
   const total = `${ImageBaseUrl}${data.imageUrl}`;
-  // console.log(total);
   return (
     <SafeAreaView>
       <View>
