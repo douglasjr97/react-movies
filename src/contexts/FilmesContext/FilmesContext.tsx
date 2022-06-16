@@ -4,15 +4,17 @@ import { Movie } from "../../interfaces/interface";
 export type FilmesContextState = {
   filme: Movie | null;
   setFilme: (filme: Movie | null) => void;
+  jogadores: string;
 };
 
 export const FilmesContext = createContext({} as FilmesContextState);
 
 export const FilmesContextProvider: React.FC = ({ children }) => {
   const [filme, setFilme] = useState<Movie | null>(null);
+  const [jogadores] = useState("Ronaldinho");
 
   return (
-    <FilmesContext.Provider value={{ filme, setFilme }}>
+    <FilmesContext.Provider value={{ filme, setFilme, jogadores }}>
       {children}
     </FilmesContext.Provider>
   );

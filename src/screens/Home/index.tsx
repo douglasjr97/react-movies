@@ -1,5 +1,5 @@
 import { FlatList, View, ActivityIndicator, Button } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ApiMovie, Movie } from "../../interfaces/interface";
 import { api } from "../../services/api";
 import Filmes from "../../components/Filmes";
@@ -7,7 +7,7 @@ import convertApiMovieToMovie from "../../utils/convertApiMovieToMovie";
 import { Container, ContainerTop, Title } from "./styles";
 import { Searchbar } from "react-native-paper";
 import useDebounce from "../../hooks/useDebounce";
-import { useNavigation } from "@react-navigation/native";
+import { useFilmesContext } from "../../contexts/FilmesContext/FilmesContext";
 
 const Home = ({ navigation }: any) => {
   const [filmes, setFilmes] = useState<Movie[]>([]);
@@ -16,9 +16,12 @@ const Home = ({ navigation }: any) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { setFilme } = useFilmesContext();
+
   // const navigation = useNavigation();
 
-  function handleGoDetails() {
+  function handleGoToDetails(movie: Movie) {
+    setFilme(movie);
     navigation.navigate("Details");
   }
 
@@ -65,7 +68,6 @@ const Home = ({ navigation }: any) => {
       <Container>
         <ContainerTop>
           <Title>Populares🔥</Title>
-          <Button title="Go to Details" onPress={handleGoDetails} />
           <Searchbar
             placeholder="Search"
             onChangeText={handleSearchTermChange}
@@ -77,7 +79,12 @@ const Home = ({ navigation }: any) => {
           <FlatList
             data={filmes}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => <Filmes data={item} />}
+            renderItem={({ item }) => (
+              <Filmes
+                data={item}
+                handleGoToDetails={() => handleGoToDetails(item)}
+              />
+            )}
           />
         </View>
       </Container>

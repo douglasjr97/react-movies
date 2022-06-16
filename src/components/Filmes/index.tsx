@@ -13,10 +13,10 @@ import {
 
 interface FilmesProps {
   data: Movie;
+  handleGoToDetails: () => void; //Tipagem da funcão que Recebe a seleção do conteúdo
 }
 
-const Filmes = ({ data }: FilmesProps) => {
-  const total = `${ImageBaseUrl}${data.imageUrl}`;
+export function Filmes({ data, handleGoToDetails }: FilmesProps) {
   return (
     <SafeAreaView>
       <View>
@@ -26,7 +26,7 @@ const Filmes = ({ data }: FilmesProps) => {
             source={{ uri: `${ImageBaseUrl}${data.imageUrl}` }}
           />
           <TitleContainer>
-            <Title>{data.title}</Title>
+            <Title onPress={handleGoToDetails}>{data.title}</Title>
             <SubTitleContainer>
               <DateTitle>{data.releaseDate}</DateTitle>
               <RatingTitle>{data.voteAverage}⭐️</RatingTitle>
@@ -36,6 +36,6 @@ const Filmes = ({ data }: FilmesProps) => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 export default Filmes;
