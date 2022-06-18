@@ -20,7 +20,7 @@ export type Movie = {
   title: string;
   releaseDate: string;
   imageUrl: string;
-  backdrop_path?: string;
+  imagePosterUrl?: string;
   voteAverage: number;
   overview: string;
 };
