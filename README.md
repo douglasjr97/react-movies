@@ -1,4 +1,4 @@
-# PrimeFilms 🔥
+# React Movie 🔥
 
 ### 1) Para utilizar atualize o expo para a versão mais recente e instale React Navigation
 
